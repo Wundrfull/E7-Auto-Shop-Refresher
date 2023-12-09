@@ -15,9 +15,11 @@ Updated to handle Google Play Emulator and different resolutions (with some pict
 2. Open Epic 7 in google play emulator and maximize.
 3. Default resolution settings set to work with 2560x1440. 
     > Any resolution outside of the default, requires a one time photo setup. There are folders for your resolution under /imgs/{your_resolution}. You need to replicate all photos in "QHD" folder, in your own resolution folder. Photo names must match exactly. If you don't see your resolution folder to add your pictures to, add one for your resolution.
+    
     > If you had to add a custom folder, you need to add your new resolution under the  "Resolution Settings" in AutoShopRefresher.py. There are comments to guide you on where to add custom ones.
 4. Enter Secret Shop
-5. Run the Python script __Make sure that refresh button is visible__
+5. Run the Python script 
+    >__Make sure that refresh button is visible__
 6. To exit the script, hold 'q' until the macro stops working completely
 
 ## Dependencies to Install
