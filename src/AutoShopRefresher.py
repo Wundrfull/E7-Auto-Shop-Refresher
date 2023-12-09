@@ -13,25 +13,55 @@ import random
 import win32api
 import win32con
 import sys
-
+# For debugging
 from DrawDebugger import locate_image_and_draw_box
 from enum import Enum
 
+class BookmarkType(Enum):
+    MYSTIC = 1
+    COVENANT = 2
+    
 # -------------------------
-# HELPER CLASSES 
+# Resolution Settings 
 # -------------------------
+
+# Add your resolution here if it's not already in the enum
 class StandardResolution(Enum):
     HD = (1280, 720)
     FHD = (1920, 1080)
     QHD = (2560, 1440)
     UHD_4K = (3840, 2160)
-
+    
 current_resolution = StandardResolution.QHD.value
 reso_acronym = "QHD"
 
-class BookmarkType(Enum):
-    MYSTIC = 1
-    COVENANT = 2
+# Add your resolution here as another elif statement with your new enum
+def set_resolution():
+    global reso_acronym
+    global current_resolution
+    
+    resolution = pyautogui.size()
+    
+    if (isinstance(resolution, StandardResolution.HD.value)):
+        print('\nHD Resolution Detected\n')
+        reso_acronym = "HD"
+        current_resolution = StandardResolution.HD
+    elif (isinstance(resolution, StandardResolution.FHD.value)):
+        print('\nFHD Resolution Detected\n')
+        reso_acronym = "FHD"
+        current_resolution = StandardResolution.FHD
+    elif (isinstance(resolution, StandardResolution.QHD.value)):
+        print('\nQHD Resolution Detected\n')
+        reso_acronym = "QHD"
+        current_resolution = StandardResolution.QHD
+    elif (isinstance(resolution, StandardResolution.UHD_4K.value)):
+        print("\n4K Resolution Detected\n")
+        reso_acronym = "UHD_4K"
+        current_resolution = StandardResolution.UHD_4K
+    else:
+        # You have some whack resolution widescreeners
+        print("Whack-ass resolution detected. Get some help.\n\n")
+        sys.exit()
 
 # -------------------------
 # HELPER FUNCTIONS 
@@ -79,33 +109,6 @@ def random_click_within_box(box, margin = 3):
     
     click(x, y)
     sleep_medium()
-    
-def set_resolution():
-    global reso_acronym
-    global current_resolution
-    
-    resolution = pyautogui.size()
-    
-    if (isinstance(resolution, StandardResolution.HD.value)):
-        print('\nHD Resolution Detected\n')
-        reso_acronym = "HD"
-        current_resolution = StandardResolution.HD
-    elif (isinstance(resolution, StandardResolution.FHD.value)):
-        print('\nFHD Resolution Detected\n')
-        reso_acronym = "FHD"
-        current_resolution = StandardResolution.FHD
-    elif (isinstance(resolution, StandardResolution.QHD.value)):
-        print('\nQHD Resolution Detected\n')
-        reso_acronym = "QHD"
-        current_resolution = StandardResolution.QHD
-    elif (isinstance(resolution, StandardResolution.UHD_4K.value)):
-        print("\n4K Resolution Detected\n")
-        reso_acronym = "UHD_4K"
-        current_resolution = StandardResolution.UHD_4K
-    else:
-        # You have some whack resolution widescreeners
-        print("Whack-ass resolution detected. Get some help.\n\n")
-        sys.exit()
         
 def buy_bookmark(bookmark_type: BookmarkType):
     buy_time = time.time()

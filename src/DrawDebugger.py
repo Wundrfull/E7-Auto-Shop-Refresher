@@ -40,3 +40,6 @@ def locate_image_and_draw_box(image_path, confidence = 0.8, radius = 5):
         # screenshot.save('outlined_screenshot.png')  # Or save the image
     else:
         print("Image not found on the screen.")
+
+# Uncomment the following line to test the function
+# locate_image_and_draw_box("./imgs/QHD/refresh_button.png")
